@@ -21,8 +21,10 @@ class UsersController < ApplicationController
       name: params[:name],
       email: params[:email],
       image_name:"",
-      password: params[:password]
-      
+      password: params[:password],
+      company: params[:company],
+      title: params[:title],
+      telephoneNumber: params[:telephoneNumber]
     )
     if @user.save
       session[:user_id] = @user.id
@@ -41,6 +43,9 @@ class UsersController < ApplicationController
     @user = User.find_by(id: params[:id])
     @user.name = params[:name]
     @user.email = params[:email]
+    @user.company = params[:company]
+    @user.title = params[:title]
+    @user.telephoneNumber = params[:telephoneNumber]
     if params[:image]
       @user.image_name = "#{@user.id}.jpg"
       image = params[:image]
@@ -84,7 +89,8 @@ class UsersController < ApplicationController
 
   def likes
     @user = User.find_by(id: params[:id])
-    @likes = Like.where(user_id: @user.id)
+    @likes = Like.where(user_id: @user.id).includes(:post)
+    
   end
 
   def ensure_correct_user

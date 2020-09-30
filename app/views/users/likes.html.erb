@@ -14,11 +14,9 @@
       <li class="active"><%= link_to("いいね!", "/users/#{@user.id}/likes") %></li>
     </ul>
     
-    <!-- 変数@likesに対してeach文を用いてください -->
-     <!-- 変数@likesに対してeach文を用いてください -->
-    <% @likes.each do |like| %>
-      <!-- 変数postを定義してください -->
-      <% post = Post.find_by(id: like.post_id) %>
+    
+    <% @likes.each do |like|%>
+      <% post = like.post %>
       
       <div class="posts-index-item">
         <div class="post-left">
@@ -31,7 +29,7 @@
           <%= link_to(post.content, "/posts/#{post.id}") %>
         </div>
       </div>
-    <!-- each文のendを追加してください -->
+        
     <% end %>
   </div>
 </div>

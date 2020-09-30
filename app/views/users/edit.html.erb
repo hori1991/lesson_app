@@ -18,6 +18,13 @@
         <p>メールアドレス</p>
         <!-- emailを初期値として表示してください -->
         <input name ="email" value="<%= @user.email %>">
+        <p>会社名</p>
+        <input name ="company" value="<%= @user.company %>">
+        <p>役職</p>
+        <input name ="title" value="<%= @user.title %>">
+        <p>電話番号</p>
+        <input name ="telephoneNumber" value="<%= @user.telephoneNumber %>">
+
         <input type="submit" value="保存">
         <% end %>
       </div>

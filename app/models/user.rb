@@ -2,8 +2,7 @@ class User < ApplicationRecord
     validates :name, {presence:true}
     validates :email,{presence:true, uniqueness:true}
     validates :password,{presence: true}
+    validates :telephoneNumber, numericality: {only_integer: true}
 
-    def posts
-        return Post.where(user_id: self.id)
-    end
+    has_many :posts, dependent: :destroy
 end
