@@ -15,6 +15,13 @@
           <div class="post-time">
             <%= post.created_at %>
           </div>
+          <% if Like.find_by(user_id: @current_user.id, post_id: post.id ) %>
+          <span class="fa fa-heart like-btn-unlike"></span>
+          <% else %>
+          <span class="fa fa-heart like-btn"></span>
+          <% end %>
+          
+          <%= post.likes.count%>
         </div>
       </div>
     <% end %>
