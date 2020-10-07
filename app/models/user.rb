@@ -5,4 +5,5 @@ class User < ApplicationRecord
     validates :telephoneNumber, numericality: {only_integer: true}
 
     has_many :posts, dependent: :destroy
+    has_many :likes
 end
