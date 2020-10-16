@@ -21,8 +21,9 @@ class CommentsController < ApplicationController
   end
 
   def edit
+    #binding.pry
     #@post = Post.find(params[:post_id])
-    @comment = Comment.find_by(params[:id])
+    @comment = Comment.find(params[:id])
   end
 
   def update
@@ -39,8 +40,11 @@ class CommentsController < ApplicationController
   end
 
   def destroy
+    #binding.pry
     @post = Post.find(params[:post_id])
-    @comment = @post.comments.find_by(params[:id])
+    @comment = @post.comments.find(params[:id])
+    @comment.destroy
+    flash[:notice] = "コメントを削除しました"
     redirect_to("/posts/#{params[:post_id]}")
   end
 

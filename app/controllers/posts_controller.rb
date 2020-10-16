@@ -9,6 +9,7 @@ class PostsController < ApplicationController
   end
 
   def show
+    #binding.pry
     @post = Post.find_by(id: params[:id])
     @user = @post.user
     @likes_count = Like.where(post_id: @post.id).count
