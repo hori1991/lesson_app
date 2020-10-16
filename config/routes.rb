@@ -1,4 +1,13 @@
 Rails.application.routes.draw do
+  
+  get "posts/:post_id/comments/new" => "comments#new"
+  #get "posts/:post_id/comments/:id" => "comments#show"
+  get "posts/:post_id/comments/:id/edit" => "comments#edit"
+  post "posts/:post_id/comments" => "comments#create"
+  post "posts/:post_id/comments/:id" => "comments#update"
+  delete "posts/:post_id/comments/:id" => "comments#destroy", as:'post_comment'
+  
+
   post "likes/:post_id/create" => "likes#create"
   post "likes/:post_id/destroy" => "likes#destroy"
 

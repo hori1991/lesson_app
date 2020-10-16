@@ -12,6 +12,8 @@ class PostsController < ApplicationController
     @post = Post.find_by(id: params[:id])
     @user = @post.user
     @likes_count = Like.where(post_id: @post.id).count
+    @comment = @post.comments.new
+    @comments = @post.comments.order(created_at: :desc)
   end
 
   def new
