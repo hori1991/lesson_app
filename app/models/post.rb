@@ -6,5 +6,8 @@ class Post < ApplicationRecord
     has_many :likes
     has_many :comments
     
+    def self.search(search)
+        Post.where(['content LIKE ?', "%#{search}%"])   
+    end
 end
 

@@ -9,11 +9,9 @@ class PostsController < ApplicationController
   end
 
   def show
-    #binding.pry
     @post = Post.find_by(id: params[:id])
     @user = @post.user
     @likes_count = Like.where(post_id: @post.id).count
-    @comment = @post.comments.new
     @comments = @post.comments.order(created_at: :desc)
   end
 
@@ -64,5 +62,10 @@ class PostsController < ApplicationController
       redirect_to("/posts/index")
     end
   end
-    
+  
+  
+  def search
+    @posts = Post.search(params[:search]).order(created_at: :desc)
+    render("posts/search")
+  end
 end

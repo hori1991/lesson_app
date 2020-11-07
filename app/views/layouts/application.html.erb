@@ -26,7 +26,7 @@
         <% if @current_user %>
           <li>
             
-            <!-- コードを追加し、ログイン中のユーザーのidを表示してください -->
+            
             <%= link_to(@current_user.name,"/users/#{@current_user.id}") %>
           </li>
           <li>
@@ -39,11 +39,11 @@
             <%= link_to("ユーザー一覧", "/users/index") %>
           </li>
           <li>
-            <!-- ログアウト用のリンクを追加してください -->
+            
             <%= link_to("ログアウト", "/logout", {method: :post}) %>
           </li>
         <% else %>
-          <!-- ログインしていない状態でヘッダーに表示するHTMLを貼り付けてください -->
+          
           <li>
             <%= link_to("TweetAppとは", "/about") %>
           </li>

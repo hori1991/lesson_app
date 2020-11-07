@@ -7,10 +7,10 @@ class CommentsController < ApplicationController
   end
 
   def create
-    @comment = Comment.new
+    @comment = Comment.new(comment_params)
     @comment.user_id = @current_user.id
-    @comment.post_id = params[:post_id]
-    @comment.comment_content = params[:comment_content]
+    #@comment.post_id = params[:post_id]
+    #@comment.comment_content = params[:comment_content]
     if @comment.save 
       flash[:notice] = "コメントを作成しました"
       redirect_to("/posts/#{params[:post_id]}")
@@ -21,17 +21,16 @@ class CommentsController < ApplicationController
   end
 
   def edit
-    #binding.pry
-    #@post = Post.find(params[:post_id])
     @comment = Comment.find(params[:id])
   end
 
   def update
-    @comment = Comment.new
+    @comment = Comment.find(params[:id])
     @comment.user_id = @current_user.id
-    @comment.post_id = params[:post_id]
-    @comment.comment_content = params[:comment_content]
-    if @comment.save 
+    #@comment.post_id = params[:post_id]
+    #@comment.comment_content = params[:comment_content]
+    if #@comment.save
+      @comment.update(comment_params)
       flash[:notice] = "コメントを編集しました"
       redirect_to("/posts/#{params[:post_id]}")
     else
@@ -39,8 +38,9 @@ class CommentsController < ApplicationController
     end
   end
 
+  
+
   def destroy
-    #binding.pry
     @post = Post.find(params[:post_id])
     @comment = @post.comments.find(params[:id])
     @comment.destroy
@@ -48,5 +48,9 @@ class CommentsController < ApplicationController
     redirect_to("/posts/#{params[:post_id]}")
   end
 
+  private
+  def comment_params
+    params.permit(:post_id, :comment_content)
+  end
   
 end
