@@ -1,11 +1,5 @@
 <div class="main posts-index">
-  
-  <%= form_with(url: search_path, method: :get, local: true) do |f| %>
-  <%= f.text_field :search %>
-  <%= f.submit "検索" %>
-  <% end %>
-
-  <div class="container">
+    <div class="container">
     <% @posts.each do |post| %>
       <div class="posts-index-item">
         <div class="post-left">
@@ -31,7 +25,7 @@
           コメント(<%= post.comments.count %>)
 
         </div>
-      </div>
-    <% end %>
-  </div>
+        </div>
+     <% end %>
+    </div>
 </div>

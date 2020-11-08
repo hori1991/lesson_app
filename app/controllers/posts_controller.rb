@@ -12,6 +12,7 @@ class PostsController < ApplicationController
     @post = Post.find_by(id: params[:id])
     @user = @post.user
     @likes_count = Like.where(post_id: @post.id).count
+    @comments = @post.comments.order(created_at: :desc)
   end
 
   def new
@@ -61,5 +62,10 @@ class PostsController < ApplicationController
       redirect_to("/posts/index")
     end
   end
-    
+  
+  
+  def search
+    @posts = Post.search(params[:search]).order(created_at: :desc)
+    render("posts/search")
+  end
 end
