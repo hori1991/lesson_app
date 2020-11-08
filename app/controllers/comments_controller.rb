@@ -9,8 +9,6 @@ class CommentsController < ApplicationController
   def create
     @comment = Comment.new(comment_params)
     @comment.user_id = @current_user.id
-    #@comment.post_id = params[:post_id]
-    #@comment.comment_content = params[:comment_content]
     if @comment.save 
       flash[:notice] = "コメントを作成しました"
       redirect_to("/posts/#{params[:post_id]}")
@@ -27,10 +25,7 @@ class CommentsController < ApplicationController
   def update
     @comment = Comment.find(params[:id])
     @comment.user_id = @current_user.id
-    #@comment.post_id = params[:post_id]
-    #@comment.comment_content = params[:comment_content]
-    if #@comment.save
-      @comment.update(comment_params)
+    if @comment.update(comment_params)
       flash[:notice] = "コメントを編集しました"
       redirect_to("/posts/#{params[:post_id]}")
     else
